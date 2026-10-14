@@ -35,7 +35,7 @@ export default function LedgerDashboard({ transactions }: { transactions: Transa
       if (toDate && dateKey > toDate) return false;
 
       if (normalizedQuery) {
-        const haystack = `${transaction.id} ${transaction.comment ?? ""} ${transaction.amount}`.toLocaleLowerCase("ko-KR");
+        const haystack = `${transaction.id} ${transaction.category} ${transaction.comment ?? ""} ${transaction.amount} ${transaction.balanceAfter}`.toLocaleLowerCase("ko-KR");
         if (!haystack.includes(normalizedQuery)) return false;
       }
       return true;
@@ -65,7 +65,7 @@ export default function LedgerDashboard({ transactions }: { transactions: Transa
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" /><path d="m16 16 4.5 4.5" /></svg>
           <input
             type="search"
-            placeholder="주석, 금액, 거래 ID 검색"
+            placeholder="거래구분, 내용, 금액, 거래 ID 검색"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
           />
@@ -99,8 +99,10 @@ export default function LedgerDashboard({ transactions }: { transactions: Transa
                 <tr>
                   <th scope="col">거래일시</th>
                   <th scope="col">구분</th>
+                  <th scope="col">거래구분</th>
                   <th scope="col">내용</th>
                   <th scope="col" className="amount-heading">거래 금액</th>
+                  <th scope="col" className="amount-heading">거래 후 잔액</th>
                 </tr>
               </thead>
               <tbody>
@@ -113,6 +115,7 @@ export default function LedgerDashboard({ transactions }: { transactions: Transa
                         {transaction.type === "deposit" ? "입금" : "출금"}
                       </span>
                     </td>
+                    <td><span className="category-badge">{transaction.category}</span></td>
                     <td>
                       <div className="transaction-comment">{transaction.comment?.trim() || "내용 미기재"}</div>
                       <div className="transaction-id">{transaction.id}</div>
@@ -120,6 +123,7 @@ export default function LedgerDashboard({ transactions }: { transactions: Transa
                     <td className={`amount-cell ${transaction.type}`}>
                       {transaction.type === "deposit" ? "+" : "−"}{formatWon(transaction.amount)}
                     </td>
+                    <td className="balance-after-cell">{formatWon(transaction.balanceAfter)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -138,7 +142,9 @@ export default function LedgerDashboard({ transactions }: { transactions: Transa
                     {transaction.type === "deposit" ? "+" : "−"}{formatWon(transaction.amount)}
                   </span>
                 </div>
+                <p className="mobile-category">{transaction.category}</p>
                 <p className="mobile-comment">{transaction.comment?.trim() || "내용 미기재"}</p>
+                <div className="mobile-balance">거래 후 잔액 <strong>{formatWon(transaction.balanceAfter)}</strong></div>
                 <div className="mobile-meta">
                   <span>{formatDate(transaction.date)}</span>
                   <span>{transaction.id}</span>

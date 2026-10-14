@@ -118,3 +118,16 @@ fundraising-ledger/
 ├── package.json
 └── tsconfig.json
 ```
+
+
+## 거래내역 JSON 형식 (version 2)
+
+`data/transactions.json`에 거래내역을 기록합니다.
+
+- `type`: `deposit`(입금) 또는 `withdrawal`(출금)
+- `category`: 은행 거래구분 원문(예: `일반입금`, `예금이자`)
+- `amount`: 거래금액(0 이상의 정수, 원 단위)
+- `balanceAfter`: 거래 직후 잔액(은행 거래내역에 기록된 값)
+- `comment`: 공개용 추가 설명(없으면 빈 문자열)
+
+은행에서 받은 거래내역을 변환할 때는 거래구분을 임의로 `type`과 합치지 않고 별도로 유지합니다. JSON을 수정한 뒤 `npm run validate:data`로 검증하고 GitHub에 push하면 Vercel이 자동 배포됩니다.

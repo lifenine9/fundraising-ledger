@@ -166,3 +166,9 @@ button { cursor: pointer; }
   .ledger-note { font-size: 9px; }
   .site-footer { padding: 23px 0 30px; }
 }
+
+.category-badge { display: inline-flex; padding: 6px 8px; border: 1px solid #e7ebef; border-radius: 6px; background: #f8fafc; color: #586474; font-size: 10px; font-weight: 600; white-space: nowrap; }
+.balance-after-cell { color: #3c4654; font-size: 12px; font-weight: 700; text-align: right; white-space: nowrap; }
+.mobile-category { margin: 7px 0 0; color: #596575; font-size: 11px; font-weight: 700; }
+.mobile-balance { display: flex; justify-content: space-between; gap: 10px; margin-top: 12px; padding-top: 10px; border-top: 1px solid #edf0f3; color: #87909c; font-size: 11px; }
+.mobile-balance strong { color: #354152; font-size: 12px; }

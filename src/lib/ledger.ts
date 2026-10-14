@@ -6,7 +6,9 @@ export interface Transaction {
   id: string;
   date: string;
   type: TransactionType;
+  category: string;
   amount: number;
+  balanceAfter: number;
   comment?: string;
 }
 
@@ -34,7 +36,7 @@ export function calculateSummary(items: Transaction[] = transactions) {
   return {
     depositTotal,
     withdrawalTotal,
-    balance: openingBalance + depositTotal - withdrawalTotal,
+    balance: items.length > 0 ? items.reduce((latest, item) => Date.parse(item.date) > Date.parse(latest.date) ? item : latest).balanceAfter : openingBalance,
     transactionCount: items.length,
   };
 }
