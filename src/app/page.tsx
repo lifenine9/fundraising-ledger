@@ -1,3 +1,4 @@
+import Link from "next/link";
 import LedgerDashboard from "@/components/LedgerDashboard";
 import { calculateSummary, transactions } from "@/lib/ledger";
 
@@ -7,11 +8,17 @@ export default function Home() {
   return (
     <main className="page-shell">
       <header className="site-header">
-        <a className="brand" href="/" aria-label="프로미스나인 9주년 서포트 모금계좌 거래내역 홈">
+        <Link
+          className="brand"
+          href="/"
+          aria-label="프로미스나인 9주년 서포트 모금계좌 거래내역 홈"
+        >
           <span className="brand-mark" aria-hidden="true">₩</span>
           <span>프로미스나인 9주년 서포트 모금계좌 거래내역</span>
-        </a>
-        <span className="public-label"><span className="status-dot" /> 거래내역</span>
+        </Link>
+        <span className="public-label">
+          <span className="status-dot" /> 거래내역
+        </span>
       </header>
 
       <section className="intro">
