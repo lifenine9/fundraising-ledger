@@ -118,7 +118,6 @@ export default function LedgerDashboard({ transactions }: { transactions: Transa
                     <td><span className="category-badge">{transaction.category}</span></td>
                     <td>
                       <div className="transaction-comment">{transaction.comment?.trim() || "익명"}</div>
-                      <div className="transaction-id">{transaction.id}</div>
                     </td>
                     <td className={`amount-cell ${transaction.type}`}>
                       {transaction.type === "deposit" ? "+" : "−"}{formatWon(transaction.amount)}
@@ -147,7 +146,6 @@ export default function LedgerDashboard({ transactions }: { transactions: Transa
                 <div className="mobile-balance">거래 후 잔액 <strong>{formatWon(transaction.balanceAfter)}</strong></div>
                 <div className="mobile-meta">
                   <span>{formatDate(transaction.date)}</span>
-                  <span>{transaction.id}</span>
                 </div>
               </article>
             ))}
