@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <main className="page-shell">
       <header className="site-header">
-        <Link
+          <Link
           className="brand"
           href="/"
           aria-label="프로미스나인 9주년 서포트 모금계좌 거래내역 홈"
