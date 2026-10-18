@@ -407,6 +407,15 @@
       "amount": 30000,
       "balanceAfter": 1918161,
       "comment": ""
+    },
+    {
+      "id": "20261017-162007-046",
+      "date": "2026-10-17T16:20:07+09:00",
+      "type": "deposit",
+      "category": "일반입금",
+      "amount": 81839,
+      "balanceAfter": 2000000,
+      "comment": ""
     }
   ]
 }
